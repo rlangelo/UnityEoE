@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	public bool Move(Vector2 direction) //Avoid ability to move diagonally
+    public bool p_OnCross;
+
+    public bool Move(Vector2 direction) //Avoid ability to move diagonally
     {
         if (Mathf.Abs(direction.x) < 0.5) //Will always set one of coordinates to 0
         {
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour {
         else
         {
             transform.Translate(direction);
+            TestForPlayerOnGoal();
             return true;
         }
     }
@@ -55,4 +58,23 @@ public class Player : MonoBehaviour {
         }
         return false;
     }
+
+    void TestForPlayerOnGoal()
+    {
+        GameObject[] crosses = GameObject.FindGameObjectsWithTag("Cross");
+        foreach (var cross in crosses)
+        {
+            if (transform.position.x == cross.transform.position.x && transform.position.y == cross.transform.position.y)
+            {
+                //On a cross
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+                p_OnCross = true;
+                return;
+            }
+        }
+        GetComponent<SpriteRenderer>().color = Color.white;
+        p_OnCross = false;
+    }
+
+
 }

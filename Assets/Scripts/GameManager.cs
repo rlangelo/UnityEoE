@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        m_NextButton.SetActive(false);
+        //m_NextButton.SetActive(false);
         ResetScene();
     }
 
@@ -49,11 +49,8 @@ public class GameManager : MonoBehaviour {
 
     bool IsLevelComplete()
     {
-        Box[] boxes = FindObjectsOfType<Box>();
-        foreach (var box in boxes)
-        {
-            if (!box.m_OnCross) return false;
-        }
+        m_Player = FindObjectOfType<Player>();
+        if (!m_Player.p_OnCross) return false;
         return true;
     }
 

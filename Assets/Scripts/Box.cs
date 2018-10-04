@@ -51,7 +51,7 @@ public class Box : MonoBehaviour {
             if (transform.position.x == cross.transform.position.x && transform.position.y == cross.transform.position.y)
             {
                 //On a cross
-                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponent<SpriteRenderer>().color = Color.yellow;
                 m_OnCross = true;
                 return;
             }
