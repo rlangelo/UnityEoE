@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public bool p_OnCross;
+    public bool p_OnBomb;
 
     public bool Move(Vector2 direction) //Avoid ability to move diagonally
     {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
         {
             transform.Translate(direction);
             TestForPlayerOnGoal();
+            TestForPlayerOnBomb();
             return true;
         }
     }
@@ -76,5 +78,21 @@ public class Player : MonoBehaviour {
         p_OnCross = false;
     }
 
+    void TestForPlayerOnBomb()
+    {
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        foreach (var bomb in bombs)
+        {
+            if (transform.position.x == bomb.transform.position.x && transform.position.y == bomb.transform.position.y)
+            {
+                //om bomb
+                GetComponent<SpriteRenderer>().color = Color.red;
+                p_OnBomb = true;
+                return;
+            }
+        }
+        GetComponent<SpriteRenderer>().color = Color.white;
+        p_OnBomb = false;
+    }
 
 }

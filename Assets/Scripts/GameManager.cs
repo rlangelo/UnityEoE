@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour {
             {
                 m_ReadyForInput = false;
                 m_Player.Move(moveInput);
+                if (IsPlayerDead())
+                {
+                    ResetScene();
+                }
                 m_NextButton.SetActive(IsLevelComplete());
             }
         }
@@ -52,6 +56,13 @@ public class GameManager : MonoBehaviour {
         m_Player = FindObjectOfType<Player>();
         if (!m_Player.p_OnCross) return false;
         return true;
+    }
+
+    bool IsPlayerDead()
+    {
+        m_Player = FindObjectOfType<Player>();
+        if (m_Player.p_OnBomb) return true;
+        return false;
     }
 
     IEnumerator ResetSceneASync()

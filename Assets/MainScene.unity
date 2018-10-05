@@ -826,6 +826,12 @@ MonoBehaviour:
     m_Prefab: {fileID: 1823163563213112, guid: 36f63d9b2536df54fb9f63e365b11d43, type: 2}
   - m_Character: .
     m_Prefab: {fileID: 1040706786369402, guid: e7eebcda88363454082b7cefe74b528d, type: 2}
+  - m_Character: '*'
+    m_Prefab: {fileID: 1858347240377762, guid: 59f2279c42dfa994f98d2b7ac728663f, type: 2}
+  - m_Character: '|'
+    m_Prefab: {fileID: 1880629838816750, guid: f31895ff074d5794188907e24adc3d69, type: 2}
+  - m_Character: B
+    m_Prefab: {fileID: 1320759402503614, guid: 848fa7af745b5bd4491002a0dc7d4318, type: 2}
 --- !u!114 &2077708438
 MonoBehaviour:
   m_ObjectHideFlags: 0

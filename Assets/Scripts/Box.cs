@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour {
 
+    public GameObject thisBox;
     public bool m_OnCross; //true if box has been pushed on to a cross
 
 	public bool Move(Vector2 direction)//Avoid ability to move diagonally
@@ -15,7 +16,8 @@ public class Box : MonoBehaviour {
         else
         {
             transform.Translate(direction);//Box not blocked so move it
-            TestForOnCross();
+            //TestForOnCross();
+            TestForOnBomb();
             return true;
         }
     }
@@ -60,5 +62,20 @@ public class Box : MonoBehaviour {
         m_OnCross = false;
     }
 
+    void TestForOnBomb()
+    {
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        foreach (var bomb in bombs)
+        {
+            if (transform.position.x == bomb.transform.position.x && transform.position.y == bomb.transform.position.y)
+            {
+                //On a bomb
+                Destroy(bomb);
+                Destroy(this.gameObject);
+                return;
+            }
+        }
+        return;
+    }
 
 }

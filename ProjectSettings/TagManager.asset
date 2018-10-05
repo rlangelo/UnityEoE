@@ -7,6 +7,9 @@ TagManager:
   - Box
   - Wall
   - Cross
+  - Plate
+  - Gate
+  - Bomb
   layers:
   - Default
   - TransparentFX
