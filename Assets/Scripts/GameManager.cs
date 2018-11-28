@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public GameObject m_NextButton;
     private bool m_ReadyForInput;
     private Player m_Player;
+    private bool gateDisabled;
 
     void Start()
     {
@@ -32,6 +33,23 @@ public class GameManager : MonoBehaviour {
                     ResetScene();
                 }
                 m_NextButton.SetActive(IsLevelComplete());
+                gateDisabled = IsGateInactive();
+                if (gateDisabled)
+                {
+                    GameObject[] gates = GameObject.FindGameObjectsWithTag("Gate");
+                    foreach (var gate in gates)
+                    {
+                        gate.SetActive(false);
+                    }
+                } 
+                else
+                {
+                    GameObject[] gates = GameObject.FindGameObjectsWithTag("Gate");
+                    foreach (var gate in gates)
+                    {
+                        gate.SetActive(true);
+                    }
+                }
             }
         }
         else
@@ -66,6 +84,27 @@ public class GameManager : MonoBehaviour {
         return false;
     }
 
+    bool IsGateInactive()
+    {
+        Box[] boxes = FindObjectsOfType<Box>();
+        int boxesOnPlates = 0;
+        foreach (var box in boxes)
+        {
+            if (box.IsOnPlate())
+            {
+                boxesOnPlates++;
+            }
+        }
+        if (boxesOnPlates == m_numberOfPlates)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     IEnumerator ResetSceneASync()
     {
         if (SceneManager.sceneCount > 1)
@@ -89,6 +128,7 @@ public class GameManager : MonoBehaviour {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("LevelScene"));
         m_LevelBuilder.Build();
         m_Player = FindObjectOfType<Player>();
+        m_numberOfPlates = m_LevelBuilder.getNumberOfPlates();
         Debug.Log("Level loaded");
     }
 

@@ -87,4 +87,16 @@ public class Box : MonoBehaviour {
         return;
     }
 
+    public bool IsOnPlate()
+    {
+        GameObject[] plates = GameObject.FindGameObjectsWithTag("Plate");
+        foreach (var plate in plates)
+        {
+            if (transform.position.x == plate.transform.position.x && transform.position.y == plate.transform.position.y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
