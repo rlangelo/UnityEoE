@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public LevelBuilder m_LevelBuilder;
+    public int m_numberOfPlates;
     public GameObject m_NextButton;
     private bool m_ReadyForInput;
     private Player m_Player;
 
     void Start()
     {
-        //m_NextButton.SetActive(false);
+        m_NextButton.SetActive(false);
         ResetScene();
     }
 

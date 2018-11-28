@@ -58,6 +58,14 @@ public class Player : MonoBehaviour {
                 }
             }
         }
+        GameObject[] gates = GameObject.FindGameObjectsWithTag("Gate");
+        foreach (var gate in gates)
+        {
+            if (gate.transform.position.x == newPos.x && gate.transform.position.y == newPos.y)
+            {
+                return true;
+            }
+        }
         return false;
     }
 

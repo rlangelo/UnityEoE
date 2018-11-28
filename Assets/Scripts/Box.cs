@@ -17,6 +17,7 @@ public class Box : MonoBehaviour {
         {
             transform.Translate(direction);//Box not blocked so move it
             //TestForOnCross();
+            //TestForOnPlate();
             TestForOnBomb();
             return true;
         }
@@ -27,6 +28,8 @@ public class Box : MonoBehaviour {
     {
         Vector2 newPos = new Vector2(position.x, position.y) + direction;
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        GameObject[] gates = GameObject.FindGameObjectsWithTag("Gate");
+        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
         foreach (var wall in walls)
         {
             if (wall.transform.position.x == newPos.x && wall.transform.position.y == newPos.y)
@@ -34,10 +37,16 @@ public class Box : MonoBehaviour {
                 return true;
             }
         }
-        GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
         foreach (var box in boxes)
         {
             if (box.transform.position.x == newPos.x && box.transform.position.y == newPos.y)
+            {
+                return true;
+            }
+        }
+        foreach (var gate in gates)
+        {
+            if (gate.transform.position.x == newPos.x && gate.transform.position.y == newPos.y)
             {
                 return true;
             }
