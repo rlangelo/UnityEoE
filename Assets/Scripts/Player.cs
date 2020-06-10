@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     public bool p_OnCross;
     public bool p_OnBomb;
+    public bool p_OnWater;
 
     public bool Move(Vector2 direction) //Avoid ability to move diagonally
     {
@@ -26,7 +27,8 @@ public class Player : MonoBehaviour {
         {
             transform.Translate(direction);
             TestForPlayerOnGoal();
-            TestForPlayerOnBomb();
+            TestForPlayerDeath();
+            TestForPlayerOnDirt();
             return true;
         }
     }
@@ -86,21 +88,48 @@ public class Player : MonoBehaviour {
         p_OnCross = false;
     }
 
-    void TestForPlayerOnBomb()
+    void TestForPlayerDeath()
     {
         GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        GameObject[] waters = GameObject.FindGameObjectsWithTag("Water");
         foreach (var bomb in bombs)
         {
             if (transform.position.x == bomb.transform.position.x && transform.position.y == bomb.transform.position.y)
             {
-                //om bomb
+                //on bomb
                 GetComponent<SpriteRenderer>().color = Color.red;
                 p_OnBomb = true;
                 return;
             }
         }
+        foreach (var water in waters)
+        {
+            if (transform.position.x == water.transform.position.x && transform.position.y == water.transform.position.y)
+            {
+                //on water
+                GetComponent<SpriteRenderer>().color = Color.blue;
+                p_OnWater = true;
+                return;
+            }
+        }
         GetComponent<SpriteRenderer>().color = Color.white;
         p_OnBomb = false;
+        p_OnWater = false;
+    }
+
+    void TestForPlayerOnDirt()
+    {
+        GameObject[] dirts = GameObject.FindGameObjectsWithTag("Dirt");
+        foreach (var dirt in dirts)
+        {
+            if (transform.position.x == dirt.transform.position.x && transform.position.y == dirt.transform.position.y)
+            {
+                //Player on Dirt
+                Destroy(dirt);
+                return;
+            }
+        }
+        return;
     }
 
 }

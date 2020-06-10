@@ -10,6 +10,8 @@ TagManager:
   - Plate
   - Gate
   - Bomb
+  - Water
+  - Dirt
   layers:
   - Default
   - TransparentFX

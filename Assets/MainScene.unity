@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LevelBuilder: {fileID: 2077708437}
+  m_numberOfPlates: 0
   m_NextButton: {fileID: 741997422}
 --- !u!4 &308065702
 Transform:
@@ -579,18 +580,18 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.23010379, g: 0.5588235, b: 0.39244854, a: 0}
+  m_BackGroundColor: {r: 0.6691177, g: 0.49403414, b: 0.034439873, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
-    height: 1
+    height: 2
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -820,18 +821,23 @@ MonoBehaviour:
   m_LevelElements:
   - m_Character: '#'
     m_Prefab: {fileID: 1864514550791372, guid: 598c50642e7599a4a8fb56d808fd8732, type: 2}
-  - m_Character: '@'
+  - m_Character: S
     m_Prefab: {fileID: 1807245605379704, guid: f16d3d7130a310249bb721e9753fe722, type: 2}
-  - m_Character: $
+  - m_Character: B
     m_Prefab: {fileID: 1823163563213112, guid: 36f63d9b2536df54fb9f63e365b11d43, type: 2}
-  - m_Character: .
+  - m_Character: X
     m_Prefab: {fileID: 1040706786369402, guid: e7eebcda88363454082b7cefe74b528d, type: 2}
-  - m_Character: '*'
+  - m_Character: o
     m_Prefab: {fileID: 1858347240377762, guid: 59f2279c42dfa994f98d2b7ac728663f, type: 2}
   - m_Character: '|'
     m_Prefab: {fileID: 1880629838816750, guid: f31895ff074d5794188907e24adc3d69, type: 2}
-  - m_Character: B
+  - m_Character: b
     m_Prefab: {fileID: 1320759402503614, guid: 848fa7af745b5bd4491002a0dc7d4318, type: 2}
+  - m_Character: ~
+    m_Prefab: {fileID: 1023202028481710, guid: 0a32035facca33a47ae412ab87cb61cf, type: 2}
+  - m_Character: D
+    m_Prefab: {fileID: 1608616446649816, guid: f87665e380b9b5d4aafce378722f2870, type: 2}
+  m_numberOfPlates: 0
 --- !u!114 &2077708438
 MonoBehaviour:
   m_ObjectHideFlags: 0

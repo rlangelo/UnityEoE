@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour {
 
-    public GameObject thisBox;
+    public GameObject m_dirtPrefab;
     public bool m_OnCross; //true if box has been pushed on to a cross
 
 	public bool Move(Vector2 direction)//Avoid ability to move diagonally
@@ -16,9 +16,8 @@ public class Box : MonoBehaviour {
         else
         {
             transform.Translate(direction);//Box not blocked so move it
-            //TestForOnCross();
-            //TestForOnPlate();
             TestForOnBomb();
+            TestForOnWater();
             return true;
         }
     }
@@ -30,6 +29,7 @@ public class Box : MonoBehaviour {
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
         GameObject[] gates = GameObject.FindGameObjectsWithTag("Gate");
         GameObject[] boxes = GameObject.FindGameObjectsWithTag("Box");
+        GameObject[] dirts = GameObject.FindGameObjectsWithTag("Dirt");
         foreach (var wall in walls)
         {
             if (wall.transform.position.x == newPos.x && wall.transform.position.y == newPos.y)
@@ -47,6 +47,13 @@ public class Box : MonoBehaviour {
         foreach (var gate in gates)
         {
             if (gate.transform.position.x == newPos.x && gate.transform.position.y == newPos.y)
+            {
+                return true;
+            }
+        }
+        foreach (var dirt in dirts)
+        {
+            if (dirt.transform.position.x == newPos.x && dirt.transform.position.y == newPos.y)
             {
                 return true;
             }
@@ -85,6 +92,22 @@ public class Box : MonoBehaviour {
             }
         }
         return;
+    }
+
+    void TestForOnWater()
+    {
+        GameObject[] waters = GameObject.FindGameObjectsWithTag("Water");
+        foreach (var water in waters)
+        {
+            if (transform.position.x == water.transform.position.x && transform.position.y == water.transform.position.y)
+            {
+                //On water
+                Destroy(water);
+                Destroy(this.gameObject);
+                Instantiate(m_dirtPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                return;
+            }
+        }
     }
 
     public bool IsOnPlate()

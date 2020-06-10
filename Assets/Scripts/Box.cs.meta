@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 14432d48883419c48b2ecb4e4eb211ff
-timeCreated: 1538099588
+timeCreated: 1591824767
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - thisBox: {instanceID: 0}
+  - m_LevelBuilder: {instanceID: 0}
+  - m_dirtPrefab: {fileID: 1608616446649816, guid: f87665e380b9b5d4aafce378722f2870,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

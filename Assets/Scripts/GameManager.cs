@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        m_NextButton.SetActive(false);
+        m_NextButton.SetActive(true);
         ResetScene();
     }
 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
                 {
                     ResetScene();
                 }
-                m_NextButton.SetActive(IsLevelComplete());
+                //m_NextButton.SetActive(IsLevelComplete());
                 gateDisabled = IsGateInactive();
                 if (gateDisabled)
                 {
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
     public void NextLevel()
     {
-        m_NextButton.SetActive(false);
+        //m_NextButton.SetActive(false);
         m_LevelBuilder.NextLevel();
         StartCoroutine(ResetSceneASync());
     }
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
     bool IsPlayerDead()
     {
         m_Player = FindObjectOfType<Player>();
-        if (m_Player.p_OnBomb) return true;
+        if (m_Player.p_OnBomb || m_Player.p_OnWater) return true;
         return false;
     }
 

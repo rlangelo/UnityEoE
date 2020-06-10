@@ -18,7 +18,7 @@ public class LevelBuilder : MonoBehaviour {
     private Level m_Level;
     public int m_numberOfPlates;
 
-    GameObject GetPrefab(char c)
+    public GameObject GetPrefab(char c)
     {
         LevelElement levelElement = m_LevelElements.Find(le => le.m_Character == c.ToString());
         if (levelElement != null)
@@ -46,7 +46,7 @@ public class LevelBuilder : MonoBehaviour {
         //Offset coordinates so that center of level is roughly at 0,0
         int startx = -m_Level.Width / 2; //Save start x since needs to be reset in loop
         int x = startx;
-        int y = -m_Level.Height / 2;
+        int y = m_Level.Height / 2;
         foreach (var row in m_Level.m_Rows)
         {
             foreach (var ch in row)
@@ -64,7 +64,7 @@ public class LevelBuilder : MonoBehaviour {
                 }
                 x++;
             }
-            y++;
+            y--;
             x = startx;
         }
     }
