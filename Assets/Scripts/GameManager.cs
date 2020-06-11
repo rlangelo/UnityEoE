@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        m_NextButton.SetActive(false);
+        //m_NextButton.SetActive(false);
         ResetScene();
     }
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
     public void NextLevel()
     {
-        m_NextButton.SetActive(false);
+        //m_NextButton.SetActive(false);
         m_LevelBuilder.NextLevel();
         StartCoroutine(ResetSceneASync());
     }

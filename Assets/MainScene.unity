@@ -838,6 +838,7 @@ MonoBehaviour:
   - m_Character: D
     m_Prefab: {fileID: 1608616446649816, guid: f87665e380b9b5d4aafce378722f2870, type: 2}
   m_numberOfPlates: 0
+  m_OrthographicCamera: {fileID: 1292561116}
 --- !u!114 &2077708438
 MonoBehaviour:
   m_ObjectHideFlags: 0

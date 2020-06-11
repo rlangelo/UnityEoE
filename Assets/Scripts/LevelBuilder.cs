@@ -17,6 +17,7 @@ public class LevelBuilder : MonoBehaviour {
     public List<LevelElement> m_LevelElements;
     private Level m_Level;
     public int m_numberOfPlates;
+    public Camera m_OrthographicCamera;
 
     public GameObject GetPrefab(char c)
     {
@@ -47,12 +48,13 @@ public class LevelBuilder : MonoBehaviour {
         int startx = -m_Level.Width / 2; //Save start x since needs to be reset in loop
         int x = startx;
         int y = m_Level.Height / 2;
+        AdjustCameraSize(m_Level);
         foreach (var row in m_Level.m_Rows)
         {
             foreach (var ch in row)
             {
                 Debug.Log(ch);
-                if (ch.ToString() == "*")
+                if (ch.ToString() == "o")
                 {
                     m_numberOfPlates++;
                 }
@@ -72,6 +74,26 @@ public class LevelBuilder : MonoBehaviour {
     public int getNumberOfPlates()
     {
         return m_numberOfPlates;
+    }
+
+    public void AdjustCameraSize(Level p_Level)
+    {
+        if (p_Level.Height >= 12 && p_Level.Height < 20)
+        {
+            m_OrthographicCamera.orthographicSize = 10.0f;
+        }
+        else if (p_Level.Height > 20)
+        {
+            m_OrthographicCamera.orthographicSize = 13.0f;
+        }
+        else
+        {
+            m_OrthographicCamera.orthographicSize = 6.0f;
+        }
+        if (p_Level.Width >= 20 && p_Level.Height < 12)
+        {
+            m_OrthographicCamera.orthographicSize = 10.0f;
+        }
     }
 	
 }
